@@ -1,109 +1,18 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:io';
 import 'dart:typed_data';
-// import 'package:flutter_downloader/flutter_downloader.dart';
-// import 'package:flutter_share/flutter_share.dart';
-import 'package:cardgenrate/mathods/saveinweb.dart';
 import 'package:cardgenrate/modals/TextFormModal.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
-// import 'package:flutter_share/flutter_share.dart';
-import 'package:path_provider/path_provider.dart' as path;
-import 'package:cardgenrate/Widgets/tools.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:cardgenrate/Widgets/tools.dart';
 import 'package:http/http.dart' as http;
 import 'package:printing/printing.dart';
-// import 'package:share_plus/share_plus.dart';
-import 'CardBuild.dart';
-import 'package:pdf/widgets.dart' as pw;
-
-class ExportPage extends StatelessWidget {
-  ExportPage({super.key});
-  final controller = Get.find<NameController>();
-  final ex = Get.put(ExportController());
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Export Card Name"),
-        elevation: 0,
-      ),
-      body: Container(
-        width: Get.width,
-        height: Get.height - 100,
-        padding: const EdgeInsets.all(8.0),
-        child: Obx(
-          () => Center(
-            child: Stack(
-              children: [
-                Container(
-                  height: PdfPageFormat.standard.height,
-                  width: PdfPageFormat.standard.width,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: NetworkImage(tempimage.first))),
-                ),
-                for (var i in controller.texts)
-                  Positioned(
-                    left: i.left,
-                    top: i.top,
-                    child: ConstrainedBox(
-                      constraints: BoxConstraints(minWidth: 10),
-                      child: Text(i.text,
-                          style: i.textStyle!.copyWith(fontSize: i.fontSize)),
-                    ),
-                  )
-              ],
-            ),
-          ),
-        ),
-      ),
-      bottomNavigationBar: FloatingActionButton.extended(
-        label: Text("Export As Pdf"),
-        onPressed: () {
-          Get.dialog(
-            Dialog(
-              child: Column(mainAxisSize: MainAxisSize.min, children: [
-                vertical2,
-                Text(
-                  "Exporting",
-                  style: Get.textTheme.titleLarge,
-                ),
-                vertical2,
-                vertical2,
-                Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: CircularProgressIndicator(),
-                  ),
-                ),
-                Obx(
-                  () => Text(
-                    ex.exportstatus.value,
-                    style:
-                        Get.textTheme.bodyMedium!.copyWith(color: Colors.grey),
-                  ),
-                ),
-                vertical2,
-              ]),
-            ),
-            barrierDismissible: false,
-          );
-          kIsWeb ? saveinweb(ex, controller) : PdfWork();
-        },
-      ),
-    );
-  }
-
-  PdfWork() async {
+saveinweb(ex,controller) async {
     ex.exportstatus.value = "Getting Paths...";
-    Directory directory = kIsWeb
-        ? await path.getApplicationSupportDirectory()
-        : await path.getApplicationDocumentsDirectory();
+    // Directory directory = kIsWeb
+    //     ? await p.
+    //     : await path.getApplicationDocumentsDirectory();
     //load image
     ex.exportstatus.value = "Loading Images...";
 
@@ -194,7 +103,7 @@ class ExportPage extends StatelessWidget {
     //Export to download
     // FlutterDownloader.
   }
-}
+
 
 // controller.textFormModal.value.textStyle!.copyWith(
 //                           fontSize: controller.textFormModal.value.fontSize)
@@ -252,8 +161,4 @@ Future<List<Uint8List>> downloadGoogleFont(
     log('Error: $e');
   }
   return data;
-}
-
-class ExportController extends GetxController {
-  RxString exportstatus = "".obs;
 }

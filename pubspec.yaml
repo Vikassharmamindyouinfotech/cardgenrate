@@ -44,6 +44,7 @@ dependencies:
   flutter_downloader: ^1.11.6
   printing:
   animated_text_kit: ^4.2.2
+  path: ^1.8.3
 
   # dependency_overrides:
   #     kotlin_stdlib:

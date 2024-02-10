@@ -36,9 +36,10 @@ class MyApp extends StatelessWidget {
               seedColor: Colors.pink, primary: Colors.purple),
           useMaterial3: true,
         ),
-        home: SplashScreen(),
-        // initialRoute: AppRoutes.login,
+        // home: SplashScreen(),
+        initialRoute: "/splash",
         getPages: [
+          GetPage(name: "/splash", page: () => SplashScreen()),
           for (var i in AppRoutes().router.entries)
             GetPage(name: i.key, page: () => i.value)
         ]);

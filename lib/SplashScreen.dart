@@ -16,8 +16,12 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(
-        const Duration(seconds: 2), () => Get.offNamed(AppRoutes.login));
+    gologin();
+  }
+
+  gologin() async {
+    await Future.delayed(
+        const Duration(seconds: 10), () => Get.offNamed(AppRoutes.login));
   }
 
   @override

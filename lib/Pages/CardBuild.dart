@@ -7,6 +7,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:pdf/pdf.dart';
 // import 'package:google_fonts/google_fonts.dart';
 
 class CardBuild extends StatelessWidget {
@@ -24,44 +25,48 @@ class CardBuild extends StatelessWidget {
         height: Get.height - 100,
         padding: const EdgeInsets.all(8.0),
         child: Obx(
-          () => Stack(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: NetworkImage(tempimage.first))),
-              ),
-              for (int i in List.generate(controller.texts.length, (d) => d))
-                Positioned(
-                  left: controller.texts[i].left,
-                  top: controller.texts[i].top,
-                  child: GestureDetector(
-                    onTap: () {
-                      controller.focus(i);
-                    },
-                    onPanUpdate: (u) => controller.updateposition(u, i),
-                    child: i == controller.cacheindex
-                        ? DottedBorder(
-                            borderType: BorderType.RRect,
-                            radius: Radius.circular(10),
-                            color: controller.texts[i].color,
-                            child: ConstrainedBox(
+          () => Center(
+            child: Stack(
+              children: [
+                Container(
+                  height: PdfPageFormat.standard.height,
+                  width: PdfPageFormat.standard.width,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: NetworkImage(tempimage.first))),
+                ),
+                for (int i in List.generate(controller.texts.length, (d) => d))
+                  Positioned(
+                    left: controller.texts[i].left,
+                    top: controller.texts[i].top,
+                    child: GestureDetector(
+                      onTap: () {
+                        controller.focus(i);
+                      },
+                      onPanUpdate: (u) => controller.updateposition(u, i),
+                      child: i == controller.cacheindex
+                          ? DottedBorder(
+                              borderType: BorderType.RRect,
+                              radius: Radius.circular(10),
+                              color: controller.texts[i].color,
+                              child: ConstrainedBox(
+                                constraints: BoxConstraints(minWidth: 10),
+                                child: Text(controller.texts[i].text,
+                                    style: controller.texts[i].textStyle.copyWith(
+                                        fontSize: controller.texts[i].fontSize)),
+                              ),
+                            )
+                          : ConstrainedBox(
                               constraints: BoxConstraints(minWidth: 10),
                               child: Text(controller.texts[i].text,
                                   style: controller.texts[i].textStyle.copyWith(
                                       fontSize: controller.texts[i].fontSize)),
                             ),
-                          )
-                        : ConstrainedBox(
-                            constraints: BoxConstraints(minWidth: 10),
-                            child: Text(controller.texts[i].text,
-                                style: controller.texts[i].textStyle.copyWith(
-                                    fontSize: controller.texts[i].fontSize)),
-                          ),
-                  ),
-                )
-            ],
+                    ),
+                  )
+              ],
+            ),
           ),
         ),
       ),

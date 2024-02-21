@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "111397515461",
+    "project_id": "cardgenerate",
+    "storage_bucket": "cardgenerate.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:111397515461:android:6d5e256a315116749a00ac",
+        "android_client_info": {
+          "package_name": "com.example.cardgenrate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRsRdF7OFL1GuQuFX1GhyolvoeD3aJNh8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

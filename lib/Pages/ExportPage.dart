@@ -156,7 +156,7 @@ class ExportPage extends StatelessWidget {
                                 (i.color.blue / 255).toDouble()),
                             font: pw.Font.ttf(ByteData.view(
                                 ttf[controller.texts.indexOf(i)].buffer)),
-                            fontSize: controller.textFormModal.value.fontSize)),
+                            fontSize: i.fontSize)),
                   ),
                 )
             ],

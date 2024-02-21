@@ -1,4 +1,5 @@
 import 'package:cardgenrate/Pages/BookMarkPage.dart';
+import 'package:cardgenrate/Pages/CardCategoryDetailsPage.dart';
 import 'package:cardgenrate/Pages/HomePage.dart';
 import 'package:cardgenrate/Pages/LoginPage.dart';
 import 'package:cardgenrate/Pages/NotificationPage.dart';
@@ -13,6 +14,8 @@ class AppRoutes {
   static String signup = "/signup";
   static String start = "/starter";
   static String home = "/homePage";
+  static String cardCategory = "/cardCategory";
+
   static String bookmark = "/bookmark";
   static String notification = "/notification";
   static String account = "/account";
@@ -22,6 +25,7 @@ class AppRoutes {
         AppRoutes.login: LoginPage(),
         AppRoutes.start: StarterScreen(),
         AppRoutes.home: HomePage(),
+        AppRoutes.cardCategory:CardCategoryPage(),
         AppRoutes.bookmark: BookMarkPage(),
         AppRoutes.notification: NotificationPage(),
         AppRoutes.account: AccountPage()

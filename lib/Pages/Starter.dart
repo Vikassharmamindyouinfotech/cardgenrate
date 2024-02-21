@@ -19,7 +19,7 @@ class StarterScreen extends StatelessWidget {
                 bottomRight: Radius.circular(60)),
           ),
           child: Image.network(
-            "https://i.pinimg.com/474x/02/7c/07/027c078468376286dd926ad512824bf3.jpg",
+            "https://img.lovepik.com/background/20211029/medium/lovepik-color-creative-marriage-and-marriage-background-image_605659350.jpg",
             height: Get.height * 0.6,
             fit: BoxFit.cover,
             width: Get.width,
